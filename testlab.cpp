@@ -34,6 +34,26 @@ int safe_stoi(const std::string &str) {
 
     return static_cast<int>(converted);
 }
+int stoi(const std::string& s) {
+    int result = 0;
+    bool is_negative = false;
+
+    // Xử lý dấu âm
+    if (!s.empty() && s[0] == '-') {
+        is_negative = true;
+        ++s.begin(); // Di chuyển con trỏ sang phải
+    }
+
+    // Chuyển đổi chuỗi thành số nguyên
+    for (char c : s) {
+        if (c < '0' || c > '9') {
+            throw std::invalid_argument("Invalid input string");
+        }
+        result = result * 10 + (c - '0');
+    }
+
+    return is_negative ? -result : result;
+}
 string layChuoi(string temp){
     string a = ""; 
     for (int i = 0; i < temp.length(); i++) {
